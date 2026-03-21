@@ -3,21 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="chaicode.png" type="image/x-icon" />
     <title>Chai Tailwind</title>
   </head>
-  <body>
-    <p
-      class="paragraph chai-bg-black chai-text-white chai-p-10 chai-border-4 chai-rounded-lg chai-border-gray"
+  <body class="chai-bg-black chai-p-10 chai-font-sans">
+    <h1
+      class="chai-text-xl chai-text-white chai-text-center chai-font-bold chai-p-8"
     >
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas unde
-      qui tempore iusto beatae fuga assumenda consectetur fugit commodi illum,
-      ad, architecto dolor molestias, odit ea. Eius aspernatur quo pariatur
-      exercitationem, ipsam voluptatem fuga porro facere in voluptatum
-      reiciendis aliquam sapiente ut cupiditate quos libero ad eveniet
-      perspiciatis ullam beatae quisquam! Molestiae, consectetur quibusdam.
-      Voluptates maiores autem iusto ratione officiis quo voluptate omnis
-      deleniti iste!
-    </p>
+      ☕ Chai Tailwind Showcase
+    </h1>
+
+    <div
+      class="chai-grid chai-gap-8 chai-justify-center"
+      style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"
+    >
+      <div
+        class="chai-bg-pink chai-p-8 chai-rounded-xl chai-border-4 chai-border-white chai-shadow"
+      >
+        <h2 class="chai-text-md chai-text-black chai-font-bold">
+          Color Palette
+        </h2>
+        <p class="chai-text-sm chai-text-black chai-p-2">
+          Testing background pink with white borders.
+        </p>
+      </div>
+
+      <div
+        class="chai-bg-white chai-p-8 chai-rounded-xl chai-border-2 chai-border-gray"
+      >
+        <h2
+          class="chai-text-md chai-text-red chai-underline-2 chai-decoration-dotted"
+        >
+          Text Styling
+        </h2>
+        <p class="chai-text-sm chai-text-gray chai-line-through-1">
+          Old Price: $100
+        </p>
+        <p class="chai-text-lg chai-text-black chai-font-bold">$20</p>
+      </div>
+
+      <div
+        class="chai-bg-red chai-p-8 chai-rounded-lg chai-flex chai-flex-col chai-items-center chai-justify-center"
+      >
+        <div
+          class="chai-bg-black chai-text-white chai-p-4 chai-rounded-md chai-cursor-pointer"
+        >
+          Hover-ish Button
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="chai-fixed chai-bottom-2 chai-right-2 chai-bg-pink chai-p-4 chai-rounded-sm chai-text-black chai-font-bold"
+    >
+      Fixed Badge
+    </div>
 
     <script src="script.js"></script>
   </body>

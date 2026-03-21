@@ -3,9 +3,15 @@ const tailwindConfig = {
   "chai-p-4": { padding: "4px" },
   "chai-p-8": { padding: "8px" },
   "chai-p-10": { padding: "10px" },
+  "chai-m-2": { margin: "2px" },
+  "chai-m-4": { margin: "4px" },
+  "chai-m-8": { margin: "8px" },
+  "chai-m-10": { margin: "10px" },
   "chai-text-red": { color: "red" },
   "chai-text-black": { color: "black" },
   "chai-text-white": { color: "white" },
+  "chai-text-pink": { color: "pink" },
+  "chai-text-gray": { color: "gray" },
   "chai-bg-black": { backgroundColor: "black" },
   "chai-bg-red": { backgroundColor: "red" },
   "chai-bg-pink": { backgroundColor: "pink" },
@@ -13,6 +19,23 @@ const tailwindConfig = {
   "chai-text-md": { fontSize: "30px" },
   "chai-text-lg": { fontSize: "50px" },
   "chai-text-xl": { fontSize: "60px" },
+  "chai-underline-1": { textDecoration: "underline 1px" },
+  "chai-underline-2": { textDecoration: "underline 2px" },
+  "chai-underline-3": { textDecoration: "underline 3px" },
+  "chai-overline-1": { textDecoration: "overline 1px" },
+  "chai-overline-2": { textDecoration: "overline 2px" },
+  "chai-overline-3": { textDecoration: "overline 3px" },
+  "chai-line-through-1": { textDecoration: "line-through 1px" },
+  "chai-line-through-2": { textDecoration: "line-through 2px" },
+  "chai-line-through-3": { textDecoration: "line-through 3px" },
+  "chai-decoration-red": { textDecoratoinColor: "red" },
+  "chai-decoration-blue": { textDecoratoinColor: "blue" },
+  "chai-decoration-black": { textDecoratoinColor: "black" },
+  "chai-decoration-gray": { textDecoratoinColor: "gray" },
+  "chai-decoration-solid": { textDecoratoinStyle: "solid" },
+  "chai-decoration-double": { textDecoratoinStyle: "double" },
+  "chai-decoration-dotted": { textDecoratoinStyle: "dotted" },
+  "chai-decoration-wavy": { textDecoratoinStyle: "wavy" },
   "chai-flex": { display: "flex" },
   "chai-grid": { display: "grid" },
   "chai-hidden": { display: "hidden" },
@@ -26,11 +49,15 @@ const tailwindConfig = {
   "chai-h-2": { height: "20px" },
   "chai-h-4": { height: "40px" },
   "chai-h-8": { height: "80px" },
-  "chai-border-1": { border: "1px solid" },
-  "chai-border-2": { border: "2px solid" },
-  "chai-border-3": { border: "3px solid" },
-  "chai-border-4": { border: "4px solid" },
-  "chai-border-5": { border: "5px solid" },
+  "chai-border-1": { border: "1px" },
+  "chai-border-2": { border: "2px" },
+  "chai-border-3": { border: "3px" },
+  "chai-border-4": { border: "4px" },
+  "chai-border-5": { border: "5px" },
+  "chai-border-solid": { borderStyle: "solid" },
+  "chai-border-dashed": { borderStyle: "dashed" },
+  "chai-border-dotted": { borderStyle: "dotted" },
+  "chai-border-double": { borderStyle: "double" },
   "chai-border-black": { borderColor: "black" },
   "chai-border-white": { borderColor: "white" },
   "chai-border-red": { borderColor: "red" },
@@ -47,18 +74,64 @@ const tailwindConfig = {
   "chai-gap-8": { gap: "8px" },
   "chai-gap-10": { gap: "10px" },
   "chai-text-center": { textAlign: "center" },
+  "chai-text-left": { textAlign: "left" },
+  "chai-text-right": { textAlign: "right" },
   "chai-font-bold": { fontWeight: "700" },
+  "chai-font-sans": { fontFamily: "sans" },
+  "chai-font-mono": { fontFamily: "monospace" },
+  "chai-font-serif": { fontFamily: "serif" },
   "chai-cursor-pointer": { cursor: "pointer" },
+  "chai-relative": { position: "relative" },
+  "chai-fixed": { position: "fixed" },
+  "chai-absolute": { position: "absolute" },
+  "chai-static": { position: "static" },
+  "chai-sticky": { position: "sticky" },
+  "chai-top-1": { top: "10px" },
+  "chai-top-2": { top: "20px" },
+  "chai-top-3": { top: "30px" },
+  "chai-bottom-1": { bottom: "10px" },
+  "chai-bottom-2": { bottom: "20px" },
+  "chai-bottom-3": { bottom: "30px" },
+  "chai-left-1": { left: "10px" },
+  "chai-left-2": { left: "20px" },
+  "chai-left-3": { left: "30px" },
+  "chai-right-1": { right: "10px" },
+  "chai-right-2": { right: "20px" },
+  "chai-right-3": { right: "30px" },
+  "chai-z-1": { zIndex: "100" },
+  "chai-z-5": { zIndex: "500" },
+  "chai-z-10": { zIndex: "1000" },
+  "chai-flex-wrap": { flexWrap: "wrap" },
+  "chai-flex-nowrap": { flexWrap: "nowrap" },
+  "chai-flex-wrap-reverse": { flexWrap: "wrap-reverse" },
+  "chai-box-border": { boxSizing: "border-box" },
+  "chai-box-content": { boxSizing: "content-box" },
+  "chai-object-contain": { objectFit: "contain" },
+  "chai-object-cover": { objectFit: "cover" },
+  "chai-object-fill": { objectFit: "fill" },
+  "chai-object-none": { objectFit: "none" },
+  "chai-justify-center": { justifyContent: "center" },
+  "chai-justify-start": { justifyContent: "flex-start" },
+  "chai-justify-end": { justifyContent: "flex-end" },
+  "chai-justify-between": { justifyContent: "between" },
+  "chai-justify-around": { justifyContent: "around" },
+  "chai-justify-evenly": { justifyContent: "evenly" },
+  "chai-justify-stretch": { justifyContent: "stretch" },
+  "chai-items-start": { alignItems: "flex-start" },
+  "chai-items-end": { alignItems: "flex-end" },
+  "chai-items-center": { alignItems: "center" },
 };
 
-const para = document.querySelector(".paragraph");
-const classes = [...para.classList];
+const chaiElements = document.querySelectorAll('[class*="chai-"]');
 
-classes.forEach((c) => {
-  if (tailwindConfig[c]) {
-    const styles = tailwindConfig[c];
-    Object.assign(para.style, styles);
-    console.log(`[CHAI-TAILWIND] applied ${JSON.stringify(styles)}`);
-    para.classList.remove(c);
-  }
+chaiElements.forEach((element) => {
+  const classes = [...element.classList];
+  classes.forEach((c) => {
+    if (tailwindConfig[c]) {
+      const styles = tailwindConfig[c];
+      Object.assign(element.style, styles);
+      console.log(`[CHAI-TAILWIND] applied ${JSON.stringify(styles)}`);
+      element.classList.remove(c);
+    }
+  });
 });
