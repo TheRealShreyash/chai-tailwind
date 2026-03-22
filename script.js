@@ -28,17 +28,17 @@ const tailwindConfig = {
   "chai-line-through-1": { textDecoration: "line-through 1px" },
   "chai-line-through-2": { textDecoration: "line-through 2px" },
   "chai-line-through-3": { textDecoration: "line-through 3px" },
-  "chai-decoration-red": { textDecoratoinColor: "red" },
-  "chai-decoration-blue": { textDecoratoinColor: "blue" },
-  "chai-decoration-black": { textDecoratoinColor: "black" },
-  "chai-decoration-gray": { textDecoratoinColor: "gray" },
-  "chai-decoration-solid": { textDecoratoinStyle: "solid" },
-  "chai-decoration-double": { textDecoratoinStyle: "double" },
-  "chai-decoration-dotted": { textDecoratoinStyle: "dotted" },
-  "chai-decoration-wavy": { textDecoratoinStyle: "wavy" },
+  "chai-decoration-red": { textDecorationColor: "red" },
+  "chai-decoration-blue": { textDecorationColor: "blue" },
+  "chai-decoration-black": { textDecorationColor: "black" },
+  "chai-decoration-gray": { textDecorationColor: "gray" },
+  "chai-decoration-solid": { textDecorationStyle: "solid" },
+  "chai-decoration-double": { textDecorationStyle: "double" },
+  "chai-decoration-dotted": { textDecorationStyle: "dotted" },
+  "chai-decoration-wavy": { textDecorationStyle: "wavy" },
   "chai-flex": { display: "flex" },
   "chai-grid": { display: "grid" },
-  "chai-hidden": { display: "hidden" },
+  "chai-hidden": { display: "none" },
   "chai-block": { display: "block" },
   "chai-flex-col": { flexDirection: "column" },
   "chai-w-full": { width: "100%" },
@@ -77,7 +77,7 @@ const tailwindConfig = {
   "chai-text-left": { textAlign: "left" },
   "chai-text-right": { textAlign: "right" },
   "chai-font-bold": { fontWeight: "700" },
-  "chai-font-sans": { fontFamily: "sans" },
+  "chai-font-sans": { fontFamily: "sans-serif" },
   "chai-font-mono": { fontFamily: "monospace" },
   "chai-font-serif": { fontFamily: "serif" },
   "chai-cursor-pointer": { cursor: "pointer" },
@@ -113,25 +113,39 @@ const tailwindConfig = {
   "chai-justify-center": { justifyContent: "center" },
   "chai-justify-start": { justifyContent: "flex-start" },
   "chai-justify-end": { justifyContent: "flex-end" },
-  "chai-justify-between": { justifyContent: "between" },
-  "chai-justify-around": { justifyContent: "around" },
-  "chai-justify-evenly": { justifyContent: "evenly" },
+  "chai-justify-between": { justifyContent: "space-between" },
+  "chai-justify-around": { justifyContent: "space-around" },
+  "chai-justify-evenly": { justifyContent: "space-evenly" },
   "chai-justify-stretch": { justifyContent: "stretch" },
   "chai-items-start": { alignItems: "flex-start" },
   "chai-items-end": { alignItems: "flex-end" },
   "chai-items-center": { alignItems: "center" },
 };
 
+// Apply all chai classes
 const chaiElements = document.querySelectorAll('[class*="chai-"]');
-
 chaiElements.forEach((element) => {
   const classes = [...element.classList];
   classes.forEach((c) => {
     if (tailwindConfig[c]) {
-      const styles = tailwindConfig[c];
-      Object.assign(element.style, styles);
-      console.log(`[CHAI-TAILWIND] applied ${JSON.stringify(styles)}`);
+      Object.assign(element.style, tailwindConfig[c]);
       element.classList.remove(c);
     }
   });
 });
+
+// Scroll reveal
+const reveals = document.querySelectorAll(".reveal");
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = `${i * 0.05}s`;
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.08 },
+);
+reveals.forEach((el) => observer.observe(el));

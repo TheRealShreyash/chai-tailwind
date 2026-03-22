@@ -4,60 +4,1543 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="chaicode.png" type="image/x-icon" />
-    <title>Chai Tailwind</title>
+    <title>Chai Tailwind | Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&family=DM+Serif+Display&family=Instrument+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --ink: #0d0d0d;
+        --paper: #f5f0e8;
+        --cream: #ede8dc;
+        --red: #e63329;
+        --pink: #f5a7b8;
+        --gray: #8a8680;
+        --mono: "Space Mono", monospace;
+        --display: "Syne", sans-serif;
+        --body: "Instrument Sans", sans-serif;
+        --serif: "DM Serif Display", serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--body);
+        overflow-x: hidden;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 39px,
+            rgba(0, 0, 0, 0.05) 40px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 39px,
+            rgba(0, 0, 0, 0.05) 40px
+          );
+        pointer-events: none;
+      }
+      .hero-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 80px 60px;
+        border-right: 2px solid var(--ink);
+        position: relative;
+        z-index: 1;
+      }
+      .hero-badge {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        background: var(--ink);
+        color: var(--paper);
+        display: inline-block;
+        padding: 6px 14px;
+        margin-bottom: 36px;
+        width: fit-content;
+      }
+      .hero-title {
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: clamp(56px, 7vw, 100px);
+        line-height: 0.92;
+        letter-spacing: -0.02em;
+      }
+      .hero-title span {
+        color: var(--red);
+      }
+      .hero-sub {
+        margin-top: 32px;
+        font-size: 15px;
+        line-height: 1.7;
+        color: var(--gray);
+        max-width: 380px;
+      }
+      .hero-sub code {
+        font-family: var(--mono);
+        font-size: 12px;
+        background: var(--cream);
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        padding: 1px 6px;
+        border-radius: 3px;
+        color: var(--ink);
+      }
+      .hero-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 60px;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-count {
+        font-family: var(--display);
+        font-size: clamp(100px, 15vw, 200px);
+        font-weight: 800;
+        line-height: 1;
+        color: var(--cream);
+        -webkit-text-stroke: 2px var(--ink);
+        user-select: none;
+      }
+      .hero-count-label {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--gray);
+        margin-top: 8px;
+      }
+
+      /* ── SECTION WRAPPERS ── */
+      .section {
+        border-top: 2px solid var(--ink);
+        padding: 72px 60px;
+      }
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        gap: 20px;
+        margin-bottom: 48px;
+      }
+      .section-num {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--gray);
+        letter-spacing: 0.12em;
+      }
+      .section-title {
+        font-family: var(--display);
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+      .section-title em {
+        font-family: var(--serif);
+        font-style: italic;
+        color: var(--red);
+      }
+
+      /* ── SHOWCASE GRID ── */
+      .showcase-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 2px;
+        background: var(--ink);
+        border: 2px solid var(--ink);
+      }
+      .showcase-cell {
+        background: var(--paper);
+        padding: 28px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: background 0.15s;
+        position: relative;
+      }
+      .showcase-cell:hover {
+        background: var(--cream);
+      }
+      .cell-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        color: var(--gray);
+        text-transform: uppercase;
+      }
+      .cell-tag {
+        font-family: var(--mono);
+        font-size: 11px;
+        background: var(--ink);
+        color: var(--paper);
+        padding: 3px 8px;
+        display: inline-block;
+        width: fit-content;
+      }
+      .cell-demo {
+        margin-top: 4px;
+      }
+
+      /* ── SPACING SECTION ── */
+      .spacing-row {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .spacing-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .spacing-box {
+        background: var(--red);
+        width: 40px;
+        height: 40px;
+      }
+      .spacing-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--gray);
+        text-align: center;
+      }
+      .pad-vis {
+        background: rgba(230, 51, 41, 0.15);
+        border: 1.5px dashed var(--red);
+        display: inline-flex;
+      }
+      .pad-inner {
+        background: var(--red);
+        width: 24px;
+        height: 24px;
+      }
+
+      /* ── TYPOGRAPHY SECTION ── */
+      .type-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .type-row {
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        align-items: baseline;
+        gap: 24px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .type-meta {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--gray);
+      }
+      .type-sample {
+        line-height: 1.1;
+      }
+
+      /* ── COLOR GRID ── */
+      .color-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3px;
+      }
+      .color-swatch {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 8px;
+        position: relative;
+      }
+      .swatch-label {
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.05em;
+        line-height: 1.3;
+      }
+
+      /* ── BORDER SECTION ── */
+      .border-strip {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .border-demo {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .border-label {
+        font-family: var(--mono);
+        font-size: 9px;
+        text-align: center;
+        color: var(--gray);
+        margin-top: 6px;
+      }
+      .border-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* ── LAYOUT SECTION ── */
+      .layout-demo-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        background: var(--ink);
+        border: 2px solid var(--ink);
+      }
+      .layout-demo-cell {
+        background: var(--paper);
+        padding: 32px 28px;
+      }
+      .layout-demo-cell h4 {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        color: var(--gray);
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .flex-demo-box {
+        background: rgba(230, 51, 41, 0.12);
+        border: 1.5px dashed var(--red);
+        padding: 12px;
+        min-height: 80px;
+      }
+      .flex-child {
+        background: var(--red);
+        color: white;
+        font-family: var(--mono);
+        font-size: 9px;
+        padding: 8px 12px;
+        text-align: center;
+      }
+
+      /* ── DECORATION SECTION ── */
+      .deco-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .deco-row {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .deco-tag {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--gray);
+        width: 200px;
+        flex-shrink: 0;
+      }
+
+      /* ── POSITIONING SECTION ── */
+      .position-demo {
+        position: relative;
+        background: var(--cream);
+        height: 160px;
+        border: 2px solid var(--ink);
+        overflow: hidden;
+      }
+      .pos-label {
+        font-family: var(--mono);
+        font-size: 9px;
+        padding: 4px 8px;
+      }
+
+      /* ── Z-INDEX SECTION ── */
+      .z-demo {
+        position: relative;
+        height: 120px;
+        margin-bottom: 12px;
+      }
+      .z-block {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: bold;
+      }
+
+      /* ── OBJECT FIT SECTION ── */
+      .objfit-grid {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .objfit-item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .objfit-frame {
+        width: 120px;
+        height: 90px;
+        border: 2px solid var(--ink);
+        overflow: hidden;
+        background: var(--cream);
+      }
+      .objfit-frame img {
+        width: 100%;
+        height: 100%;
+      }
+      .objfit-label {
+        font-family: var(--mono);
+        font-size: 9px;
+        color: var(--gray);
+      }
+
+      /* ── CURSOR SECTION ── */
+      .cursor-demo {
+        padding: 32px;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: var(--mono);
+        font-size: 13px;
+        text-align: center;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .cursor-demo:hover {
+        background: var(--red);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        border-top: 2px solid var(--ink);
+        padding: 40px 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      footer .f-left {
+        font-family: var(--display);
+        font-size: 22px;
+        font-weight: 800;
+      }
+      footer .f-right {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--gray);
+        text-align: right;
+        line-height: 1.8;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      /* ── SCROLLBAR ── */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--paper);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--ink);
+      }
+
+      /* ── REVEAL ANIMATION ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+        .hero-right {
+          display: none;
+        }
+        .hero-left {
+          padding: 60px 28px;
+        }
+        .section {
+          padding: 48px 24px;
+        }
+        .type-row {
+          grid-template-columns: 1fr;
+        }
+        .layout-demo-wrap {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+      }
+    </style>
   </head>
-  <body class="chai-bg-black chai-p-10 chai-font-sans">
-    <h1
-      class="chai-text-xl chai-text-white chai-text-center chai-font-bold chai-p-8"
-    >
-      ☕ Chai Tailwind Showcase
-    </h1>
-
-    <div
-      class="chai-grid chai-gap-8 chai-justify-center"
-      style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"
-    >
-      <div
-        class="chai-bg-pink chai-p-8 chai-rounded-xl chai-border-4 chai-border-white chai-shadow"
-      >
-        <h2 class="chai-text-md chai-text-black chai-font-bold">
-          Color Palette
-        </h2>
-        <p class="chai-text-sm chai-text-black chai-p-2">
-          Testing background pink with white borders.
+  <body>
+    <!-- ══════════════════════ HERO ══════════════════════ -->
+    <header class="hero">
+      <div class="hero-left">
+        <span class="hero-badge">v1.0 · CSS Engine</span>
+        <h1 class="hero-title">CHAI<br /><span>TAIL</span><br />WIND</h1>
+        <p class="hero-sub">
+          A custom utility-class engine powered by pure DOM API.<br />
+          Add <code>chai-*</code> classes to any element and watch styles snap
+          into place — no build step, no PostCSS.
         </p>
       </div>
+      <div class="hero-right">
+        <div class="hero-count">112</div>
+        <p class="hero-count-label">utility classes · zero dependencies</p>
+      </div>
+    </header>
 
-      <div
-        class="chai-bg-white chai-p-8 chai-rounded-xl chai-border-2 chai-border-gray"
-      >
-        <h2
-          class="chai-text-md chai-text-red chai-underline-2 chai-decoration-dotted"
-        >
-          Text Styling
-        </h2>
-        <p class="chai-text-sm chai-text-gray chai-line-through-1">
-          Old Price: $100
-        </p>
-        <p class="chai-text-lg chai-text-black chai-font-bold">$20</p>
+    <!-- ══════════════════════ §1 SPACING ══════════════════════ -->
+    <section class="section reveal">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Spacing — <em>padding & margin</em></h2>
       </div>
 
-      <div
-        class="chai-bg-red chai-p-8 chai-rounded-lg chai-flex chai-flex-col chai-items-center chai-justify-center"
-      >
-        <div
-          class="chai-bg-black chai-text-white chai-p-4 chai-rounded-md chai-cursor-pointer"
-        >
-          Hover-ish Button
+      <div class="showcase-grid">
+        <!-- Padding demos -->
+        <div class="showcase-cell">
+          <span class="cell-label">Padding</span>
+          <span class="cell-tag">chai-p-2</span>
+          <div class="cell-demo">
+            <div class="pad-vis chai-p-2"><div class="pad-inner"></div></div>
+          </div>
+        </div>
+        <div class="showcase-cell">
+          <span class="cell-label">Padding</span>
+          <span class="cell-tag">chai-p-4</span>
+          <div class="cell-demo">
+            <div class="pad-vis chai-p-4"><div class="pad-inner"></div></div>
+          </div>
+        </div>
+        <div class="showcase-cell">
+          <span class="cell-label">Padding</span>
+          <span class="cell-tag">chai-p-8</span>
+          <div class="cell-demo">
+            <div class="pad-vis chai-p-8"><div class="pad-inner"></div></div>
+          </div>
+        </div>
+        <div class="showcase-cell">
+          <span class="cell-label">Padding</span>
+          <span class="cell-tag">chai-p-10</span>
+          <div class="cell-demo">
+            <div class="pad-vis chai-p-10"><div class="pad-inner"></div></div>
+          </div>
+        </div>
+        <!-- Margin demos (visual offset) -->
+        <div class="showcase-cell">
+          <span class="cell-label">Margin</span>
+          <span class="cell-tag">chai-m-2</span>
+          <div
+            class="cell-demo"
+            style="
+              background: rgba(230, 51, 41, 0.08);
+              border: 1.5px dashed var(--red);
+              height: 50px;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <div
+              class="chai-m-2"
+              style="background: var(--red); height: 30px; width: 30px"
+            ></div>
+          </div>
+        </div>
+        <div class="showcase-cell">
+          <span class="cell-label">Margin</span>
+          <span class="cell-tag">chai-m-4</span>
+          <div
+            class="cell-demo"
+            style="
+              background: rgba(230, 51, 41, 0.08);
+              border: 1.5px dashed var(--red);
+              height: 50px;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <div
+              class="chai-m-4"
+              style="background: var(--red); height: 30px; width: 30px"
+            ></div>
+          </div>
+        </div>
+        <div class="showcase-cell">
+          <span class="cell-label">Margin</span>
+          <span class="cell-tag">chai-m-8</span>
+          <div
+            class="cell-demo"
+            style="
+              background: rgba(230, 51, 41, 0.08);
+              border: 1.5px dashed var(--red);
+              height: 50px;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <div
+              class="chai-m-8"
+              style="background: var(--red); height: 30px; width: 30px"
+            ></div>
+          </div>
+        </div>
+        <div class="showcase-cell">
+          <span class="cell-label">Margin</span>
+          <span class="cell-tag">chai-m-10</span>
+          <div
+            class="cell-demo"
+            style="
+              background: rgba(230, 51, 41, 0.08);
+              border: 1.5px dashed var(--red);
+              height: 50px;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <div
+              class="chai-m-10"
+              style="background: var(--red); height: 30px; width: 30px"
+            ></div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div
-      class="chai-fixed chai-bottom-2 chai-right-2 chai-bg-pink chai-p-4 chai-rounded-sm chai-text-black chai-font-bold"
-    >
-      Fixed Badge
-    </div>
+    <!-- ══════════════════════ §2 TYPOGRAPHY ══════════════════════ -->
+    <section class="section reveal">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">
+          Typography — <em>size, weight & align</em>
+        </h2>
+      </div>
+
+      <div class="type-stack">
+        <div class="type-row">
+          <div>
+            <div class="type-meta">chai-text-sm</div>
+            <div class="type-meta">20px</div>
+          </div>
+          <div class="type-sample chai-text-sm">The quick brown fox</div>
+        </div>
+        <div class="type-row">
+          <div>
+            <div class="type-meta">chai-text-md</div>
+            <div class="type-meta">30px</div>
+          </div>
+          <div class="type-sample chai-text-md">The quick brown fox</div>
+        </div>
+        <div class="type-row">
+          <div>
+            <div class="type-meta">chai-text-lg</div>
+            <div class="type-meta">50px</div>
+          </div>
+          <div class="type-sample chai-text-lg">The quick</div>
+        </div>
+        <div class="type-row">
+          <div>
+            <div class="type-meta">chai-text-xl</div>
+            <div class="type-meta">60px</div>
+          </div>
+          <div class="type-sample chai-text-xl">Chai.</div>
+        </div>
+      </div>
+
+      <div
+        style="
+          margin-top: 48px;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 2px;
+          background: var(--ink);
+          border: 2px solid var(--ink);
+        "
+      >
+        <div style="background: var(--paper); padding: 24px">
+          <div class="cell-label" style="margin-bottom: 12px">
+            chai-text-left
+          </div>
+          <p
+            class="chai-text-left chai-text-sm"
+            style="font-family: var(--body)"
+          >
+            Left aligned text flows from the edge.
+          </p>
+        </div>
+        <div style="background: var(--paper); padding: 24px">
+          <div class="cell-label" style="margin-bottom: 12px">
+            chai-text-center
+          </div>
+          <p
+            class="chai-text-center chai-text-sm"
+            style="font-family: var(--body)"
+          >
+            Center aligned text sits in the middle.
+          </p>
+        </div>
+        <div style="background: var(--paper); padding: 24px">
+          <div class="cell-label" style="margin-bottom: 12px">
+            chai-text-right
+          </div>
+          <p
+            class="chai-text-right chai-text-sm"
+            style="font-family: var(--body)"
+          >
+            Right aligned text ends at the edge.
+          </p>
+        </div>
+      </div>
+
+      <!-- Font families -->
+      <div style="margin-top: 48px">
+        <div
+          style="
+            font-family: sans-serif;
+            font-size: 28px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+          "
+        >
+          <span class="chai-font-sans">chai-font-sans · Sans Serif</span>
+          <span class="cell-tag" style="font-family: var(--mono)"
+            >chai-font-sans</span
+          >
+        </div>
+        <div
+          style="
+            font-family: monospace;
+            font-size: 22px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+          "
+        >
+          <span class="chai-font-mono">chai-font-mono · Monospace</span>
+          <span class="cell-tag" style="font-family: var(--mono)"
+            >chai-font-mono</span
+          >
+        </div>
+        <div
+          style="
+            font-family: serif;
+            font-size: 28px;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+          "
+        >
+          <span class="chai-font-serif">chai-font-serif · Serif</span>
+          <span class="cell-tag" style="font-family: var(--mono)"
+            >chai-font-serif</span
+          >
+        </div>
+      </div>
+
+      <!-- Bold -->
+      <div
+        style="margin-top: 40px; display: flex; align-items: center; gap: 40px"
+      >
+        <div>
+          <div class="cell-label" style="margin-bottom: 8px">Regular</div>
+          <span class="chai-text-md" style="font-family: var(--body)"
+            >Chai utility</span
+          >
+        </div>
+        <div>
+          <div class="cell-label" style="margin-bottom: 8px">
+            chai-font-bold
+          </div>
+          <span
+            class="chai-text-md chai-font-bold"
+            style="font-family: var(--body)"
+            >Chai utility</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ §3 COLORS ══════════════════════ -->
+    <section class="section reveal">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Colors — <em>text & background</em></h2>
+      </div>
+
+      <p class="cell-label" style="margin-bottom: 20px">Text Colors</p>
+      <div class="color-grid">
+        <div class="color-swatch" style="background: var(--ink)">
+          <span
+            class="chai-text-white swatch-label"
+            style="font-family: var(--mono)"
+            >chai-text-white</span
+          >
+        </div>
+        <div
+          class="color-swatch"
+          style="background: var(--cream); border: 2px solid var(--ink)"
+        >
+          <span
+            class="chai-text-black swatch-label"
+            style="font-family: var(--mono)"
+            >chai-text-black</span
+          >
+        </div>
+        <div
+          class="color-swatch"
+          style="background: #fff0f3; border: 2px solid var(--ink)"
+        >
+          <span
+            class="chai-text-red swatch-label"
+            style="font-family: var(--mono)"
+            >chai-text-red</span
+          >
+        </div>
+        <div
+          class="color-swatch"
+          style="background: #fff0f3; border: 2px solid var(--ink)"
+        >
+          <span
+            class="chai-text-pink swatch-label"
+            style="font-family: var(--mono)"
+            >chai-text-pink</span
+          >
+        </div>
+        <div
+          class="color-swatch"
+          style="background: var(--cream); border: 2px solid var(--ink)"
+        >
+          <span
+            class="chai-text-gray swatch-label"
+            style="font-family: var(--mono)"
+            >chai-text-gray</span
+          >
+        </div>
+      </div>
+
+      <p class="cell-label" style="margin-top: 36px; margin-bottom: 20px">
+        Background Colors
+      </p>
+      <div class="color-grid">
+        <div
+          class="color-swatch chai-bg-black"
+          style="border: 2px solid var(--ink)"
+        >
+          <span
+            class="swatch-label chai-text-white"
+            style="font-family: var(--mono)"
+            >chai-bg-black</span
+          >
+        </div>
+        <div
+          class="color-swatch chai-bg-red"
+          style="border: 2px solid var(--ink)"
+        >
+          <span
+            class="swatch-label chai-text-white"
+            style="font-family: var(--mono)"
+            >chai-bg-red</span
+          >
+        </div>
+        <div
+          class="color-swatch chai-bg-pink"
+          style="border: 2px solid var(--ink)"
+        >
+          <span
+            class="swatch-label chai-text-black"
+            style="font-family: var(--mono)"
+            >chai-bg-pink</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ §4 TEXT DECORATION ══════════════════════ -->
+    <section class="section reveal">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">
+          Decoration — <em>underline, overline & strike</em>
+        </h2>
+      </div>
+
+      <div class="deco-stack">
+        <div class="deco-row">
+          <span class="deco-tag">chai-underline-1 / 2 / 3</span>
+          <span
+            class="chai-underline-1 chai-text-md"
+            style="font-family: var(--body); margin-right: 32px"
+            >Underline 1px</span
+          >
+          <span
+            class="chai-underline-2 chai-text-md"
+            style="font-family: var(--body); margin-right: 32px"
+            >Underline 2px</span
+          >
+          <span
+            class="chai-underline-3 chai-text-md"
+            style="font-family: var(--body)"
+            >Underline 3px</span
+          >
+        </div>
+        <div class="deco-row">
+          <span class="deco-tag">chai-overline-1 / 2 / 3</span>
+          <span
+            class="chai-overline-1 chai-text-md"
+            style="font-family: var(--body); margin-right: 32px"
+            >Overline 1px</span
+          >
+          <span
+            class="chai-overline-2 chai-text-md"
+            style="font-family: var(--body); margin-right: 32px"
+            >Overline 2px</span
+          >
+          <span
+            class="chai-overline-3 chai-text-md"
+            style="font-family: var(--body)"
+            >Overline 3px</span
+          >
+        </div>
+        <div class="deco-row">
+          <span class="deco-tag">chai-line-through-1 / 2 / 3</span>
+          <span
+            class="chai-line-through-1 chai-text-md"
+            style="font-family: var(--body); margin-right: 32px"
+            >Strike 1px</span
+          >
+          <span
+            class="chai-line-through-2 chai-text-md"
+            style="font-family: var(--body); margin-right: 32px"
+            >Strike 2px</span
+          >
+          <span
+            class="chai-line-through-3 chai-text-md"
+            style="font-family: var(--body)"
+            >Strike 3px</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ §5 BORDERS ══════════════════════ -->
+    <section class="section reveal">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Borders — <em>width, style & color</em></h2>
+      </div>
+
+      <p class="cell-label" style="margin-bottom: 20px">
+        Border Widths (solid black)
+      </p>
+      <div class="border-strip" style="margin-bottom: 40px">
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-1 chai-border-solid chai-border-black"
+          ></div>
+          <p class="border-label">chai-border-1</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-2 chai-border-solid chai-border-black"
+          ></div>
+          <p class="border-label">chai-border-2</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-3 chai-border-solid chai-border-black"
+          ></div>
+          <p class="border-label">chai-border-3</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-4 chai-border-solid chai-border-black"
+          ></div>
+          <p class="border-label">chai-border-4</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-5 chai-border-solid chai-border-black"
+          ></div>
+          <p class="border-label">chai-border-5</p>
+        </div>
+      </div>
+
+      <p class="cell-label" style="margin-bottom: 20px">Border Styles (4px)</p>
+      <div class="border-strip" style="margin-bottom: 40px">
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-4 chai-border-solid chai-border-black"
+          ></div>
+          <p class="border-label">chai-border-solid</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-4 chai-border-dashed chai-border-black"
+          ></div>
+          <p class="border-label">chai-border-dashed</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-4 chai-border-dotted chai-border-black"
+          ></div>
+          <p class="border-label">chai-border-dotted</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-4 chai-border-double chai-border-black"
+          ></div>
+          <p class="border-label">chai-border-double</p>
+        </div>
+      </div>
+
+      <p class="cell-label" style="margin-bottom: 20px">
+        Border Colors (3px solid)
+      </p>
+      <div class="border-strip" style="margin-bottom: 40px">
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-3 chai-border-solid chai-border-black"
+          ></div>
+          <p class="border-label">black</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-3 chai-border-solid chai-border-red"
+          ></div>
+          <p class="border-label">red</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-3 chai-border-solid chai-border-pink"
+          ></div>
+          <p class="border-label">pink</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-3 chai-border-solid chai-border-blue"
+          ></div>
+          <p class="border-label">blue</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-3 chai-border-solid chai-border-gray"
+          ></div>
+          <p class="border-label">gray</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-3 chai-border-solid chai-border-white"
+            style="background: var(--ink)"
+          ></div>
+          <p class="border-label">white</p>
+        </div>
+      </div>
+
+      <p class="cell-label" style="margin-bottom: 20px">Border Radius</p>
+      <div class="border-strip">
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-2 chai-border-solid chai-border-black chai-rounded-sm"
+            style="background: rgba(230, 51, 41, 0.1)"
+          ></div>
+          <p class="border-label">chai-rounded-sm<br />2px</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-2 chai-border-solid chai-border-black chai-rounded-md"
+            style="background: rgba(230, 51, 41, 0.1)"
+          ></div>
+          <p class="border-label">chai-rounded-md<br />8px</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-2 chai-border-solid chai-border-black chai-rounded-lg"
+            style="background: rgba(230, 51, 41, 0.1)"
+          ></div>
+          <p class="border-label">chai-rounded-lg<br />15px</p>
+        </div>
+        <div class="border-item">
+          <div
+            class="border-demo chai-border-2 chai-border-solid chai-border-black chai-rounded-xl"
+            style="background: rgba(230, 51, 41, 0.1)"
+          ></div>
+          <p class="border-label">chai-rounded-xl<br />20px</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ §6 LAYOUT ══════════════════════ -->
+    <section class="section reveal">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Layout — <em>flex, gap & alignment</em></h2>
+      </div>
+
+      <div class="layout-demo-wrap">
+        <div class="layout-demo-cell">
+          <h4>chai-flex · chai-gap-8</h4>
+          <div class="flex-demo-box chai-flex chai-gap-8">
+            <div class="flex-child">A</div>
+            <div class="flex-child">B</div>
+            <div class="flex-child">C</div>
+          </div>
+        </div>
+        <div class="layout-demo-cell">
+          <h4>chai-flex · chai-flex-col · chai-gap-4</h4>
+          <div class="flex-demo-box chai-flex chai-flex-col chai-gap-4">
+            <div class="flex-child">Row 1</div>
+            <div class="flex-child">Row 2</div>
+            <div class="flex-child">Row 3</div>
+          </div>
+        </div>
+        <div class="layout-demo-cell">
+          <h4>chai-flex · chai-justify-center</h4>
+          <div class="flex-demo-box chai-flex chai-justify-center chai-gap-6">
+            <div class="flex-child">▲</div>
+            <div class="flex-child">▲</div>
+          </div>
+        </div>
+        <div class="layout-demo-cell">
+          <h4>chai-flex · chai-items-center · chai-gap-8</h4>
+          <div
+            class="flex-demo-box chai-flex chai-items-center chai-gap-8"
+            style="min-height: 80px"
+          >
+            <div class="flex-child" style="height: 20px">Short</div>
+            <div class="flex-child" style="height: 50px">Tall</div>
+            <div class="flex-child" style="height: 32px">Mid</div>
+          </div>
+        </div>
+        <div class="layout-demo-cell">
+          <h4>chai-flex · chai-flex-wrap · chai-gap-4</h4>
+          <div class="flex-demo-box chai-flex chai-flex-wrap chai-gap-4">
+            <div class="flex-child">one</div>
+            <div class="flex-child">two</div>
+            <div class="flex-child">three</div>
+            <div class="flex-child">four</div>
+            <div class="flex-child">five</div>
+            <div class="flex-child">six</div>
+          </div>
+        </div>
+        <div class="layout-demo-cell">
+          <h4>chai-grid (CSS grid)</h4>
+          <div
+            class="flex-demo-box chai-grid chai-gap-4"
+            style="grid-template-columns: 1fr 1fr"
+          >
+            <div class="flex-child">Col A</div>
+            <div class="flex-child">Col B</div>
+            <div class="flex-child">Col C</div>
+            <div class="flex-child">Col D</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 40px">
+        <p class="cell-label" style="margin-bottom: 16px">Width utilities</p>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div class="chai-w-2" style="height: 20px; background: var(--red)">
+            <span
+              style="
+                font-family: var(--mono);
+                font-size: 9px;
+                padding: 2px 4px;
+                background: white;
+              "
+              >w-2 · 20px</span
+            >
+          </div>
+          <div class="chai-w-4" style="height: 20px; background: var(--red)">
+            <span
+              style="
+                font-family: var(--mono);
+                font-size: 9px;
+                padding: 2px 4px;
+                background: white;
+              "
+              >w-4 · 40px</span
+            >
+          </div>
+          <div class="chai-w-8" style="height: 20px; background: var(--red)">
+            <span
+              style="
+                font-family: var(--mono);
+                font-size: 9px;
+                padding: 2px 4px;
+                background: white;
+              "
+              >w-8 · 80px</span
+            >
+          </div>
+          <div class="chai-w-full" style="height: 20px; background: var(--red)">
+            <span
+              style="
+                font-family: var(--mono);
+                font-size: 9px;
+                padding: 2px 4px;
+                background: white;
+              "
+              >w-full · 100%</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section reveal">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <h2 class="section-title">Display — <em>block, hidden & more</em></h2>
+      </div>
+
+      <div class="showcase-grid">
+        <div class="showcase-cell">
+          <span class="cell-label">Display</span>
+          <span class="cell-tag">chai-block</span>
+          <div class="cell-demo">
+            <div
+              class="chai-block chai-bg-black chai-text-white chai-p-4 chai-text-sm"
+              style="font-family: var(--mono)"
+            >
+              Block element
+            </div>
+            <div
+              class="chai-block chai-bg-red chai-text-white chai-p-4 chai-text-sm"
+              style="font-family: var(--mono)"
+            >
+              Below block
+            </div>
+          </div>
+        </div>
+        <div class="showcase-cell">
+          <span class="cell-label">Display</span>
+          <span class="cell-tag">chai-flex</span>
+          <div class="cell-demo">
+            <div class="chai-flex chai-gap-4">
+              <div
+                class="chai-bg-black chai-text-white chai-p-4 chai-text-sm"
+                style="font-family: var(--mono)"
+              >
+                A
+              </div>
+              <div
+                class="chai-bg-red chai-text-white chai-p-4 chai-text-sm"
+                style="font-family: var(--mono)"
+              >
+                B
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-cell">
+          <span class="cell-label">Display</span>
+          <span class="cell-tag">chai-hidden</span>
+          <div class="cell-demo">
+            <div
+              class="chai-hidden chai-bg-red"
+              style="font-family: var(--mono)"
+            >
+              You cannot see me
+            </div>
+            <span
+              style="
+                font-family: var(--mono);
+                font-size: 11px;
+                color: var(--gray);
+              "
+              >← element is hidden</span
+            >
+          </div>
+        </div>
+        <div class="showcase-cell">
+          <span class="cell-label">Display</span>
+          <span class="cell-tag">chai-grid</span>
+          <div class="cell-demo">
+            <div
+              class="chai-grid chai-gap-2"
+              style="grid-template-columns: 1fr 1fr"
+            >
+              <div
+                class="chai-bg-black chai-text-white chai-p-4 chai-text-sm"
+                style="font-family: var(--mono)"
+              >
+                1
+              </div>
+              <div
+                class="chai-bg-red chai-text-white chai-p-4 chai-text-sm"
+                style="font-family: var(--mono)"
+              >
+                2
+              </div>
+              <div
+                class="chai-bg-red chai-text-white chai-p-4 chai-text-sm"
+                style="font-family: var(--mono)"
+              >
+                3
+              </div>
+              <div
+                class="chai-bg-black chai-text-white chai-p-4 chai-text-sm"
+                style="font-family: var(--mono)"
+              >
+                4
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section reveal">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <h2 class="section-title">
+          Positioning — <em>relative, absolute & z-index</em>
+        </h2>
+      </div>
+
+      <div
+        style="
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2px;
+          background: var(--ink);
+          border: 2px solid var(--ink);
+          margin-bottom: 40px;
+        "
+      >
+        <div style="background: var(--paper); padding: 28px">
+          <p class="cell-label" style="margin-bottom: 16px">
+            chai-relative + chai-absolute
+          </p>
+          <div
+            class="chai-relative"
+            style="
+              background: var(--cream);
+              height: 120px;
+              border: 2px dashed var(--gray);
+            "
+          >
+            <div
+              class="chai-absolute chai-top-1 chai-left-1 pos-label chai-bg-red chai-text-white"
+              style="font-family: var(--mono); font-size: 9px"
+            >
+              top-1, left-1
+            </div>
+            <div
+              class="chai-absolute chai-bottom-1 chai-right-1 pos-label chai-bg-black chai-text-white"
+              style="font-family: var(--mono); font-size: 9px"
+            >
+              bottom-1, right-1
+            </div>
+            <div
+              class="chai-absolute chai-top-3 chai-left-2 pos-label"
+              style="
+                font-family: var(--mono);
+                font-size: 9px;
+                background: var(--pink);
+              "
+            >
+              top-3, left-2
+            </div>
+          </div>
+        </div>
+        <div style="background: var(--paper); padding: 28px">
+          <p class="cell-label" style="margin-bottom: 16px">
+            chai-z-1 / chai-z-5 / chai-z-10
+          </p>
+          <div class="z-demo">
+            <div
+              class="z-block chai-bg-pink chai-z-1"
+              style="top: 20px; left: 20px"
+            >
+              z-1
+            </div>
+            <div
+              class="z-block chai-bg-red chai-z-5 chai-text-white"
+              style="top: 30px; left: 50px"
+            >
+              z-5
+            </div>
+            <div
+              class="z-block chai-bg-black chai-z-10 chai-text-white"
+              style="top: 10px; left: 90px"
+            >
+              z-10
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section reveal">
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <h2 class="section-title">
+          Object Fit — <em>contain, cover & fill</em>
+        </h2>
+      </div>
+
+      <div class="objfit-grid">
+        <div class="objfit-item">
+          <div class="objfit-frame">
+            <img
+              class="chai-object-contain"
+              src="https://picsum.photos/seed/chai1/200/200"
+              alt="contain demo"
+            />
+          </div>
+          <span class="objfit-label">chai-object-contain</span>
+        </div>
+        <div class="objfit-item">
+          <div class="objfit-frame">
+            <img
+              class="chai-object-cover"
+              src="https://picsum.photos/seed/chai1/200/200"
+              alt="cover demo"
+            />
+          </div>
+          <span class="objfit-label">chai-object-cover</span>
+        </div>
+        <div class="objfit-item">
+          <div class="objfit-frame">
+            <img
+              class="chai-object-fill"
+              src="https://picsum.photos/seed/chai1/200/200"
+              alt="fill demo"
+            />
+          </div>
+          <span class="objfit-label">chai-object-fill</span>
+        </div>
+        <div class="objfit-item">
+          <div class="objfit-frame">
+            <img
+              class="chai-object-none"
+              src="https://picsum.photos/seed/chai1/200/200"
+              alt="none demo"
+            />
+          </div>
+          <span class="objfit-label">chai-object-none</span>
+        </div>
+      </div>
+    </section>
+    <section class="section reveal">
+      <div class="section-header">
+        <span class="section-num">10</span>
+        <h2 class="section-title">Misc — <em>box-sizing & cursor</em></h2>
+      </div>
+
+      <div
+        style="
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2px;
+          background: var(--ink);
+          border: 2px solid var(--ink);
+          margin-bottom: 32px;
+        "
+      >
+        <div style="background: var(--paper); padding: 28px">
+          <p class="cell-label" style="margin-bottom: 16px">
+            chai-box-border vs chai-box-content
+          </p>
+          <div
+            class="chai-box-border chai-border-2 chai-border-solid chai-border-black chai-p-8"
+            style="
+              width: 160px;
+              background: rgba(230, 51, 41, 0.1);
+              margin-bottom: 12px;
+            "
+          >
+            <span style="font-family: var(--mono); font-size: 10px"
+              >box-border<br />160px total</span
+            >
+          </div>
+          <div
+            class="chai-box-content chai-border-2 chai-border-solid chai-border-red chai-p-8"
+            style="width: 160px; background: rgba(230, 51, 41, 0.05)"
+          >
+            <span style="font-family: var(--mono); font-size: 10px"
+              >box-content<br />160px + padding</span
+            >
+          </div>
+        </div>
+        <div style="background: var(--paper); padding: 28px">
+          <p class="cell-label" style="margin-bottom: 16px">
+            chai-cursor-pointer
+          </p>
+          <div class="cursor-demo chai-cursor-pointer chai-rounded-md">
+            HOVER ME →
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="f-left">CHAI<span style="color: var(--red)">.</span></div>
+      <div class="f-right">
+        Custom CSS Utility Engine<br />
+        DOM API · Zero Dependencies<br />
+        112 classes · All rights reserved
+      </div>
+    </footer>
 
     <script src="script.js"></script>
   </body>
