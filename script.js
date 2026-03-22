@@ -134,7 +134,7 @@ chaiElements.forEach((element) => {
   });
 });
 
-// Scroll reveal
+// Scroll reveal (remove this code it is just for the showcase page)
 const reveals = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver(
   (entries) => {
